@@ -77,12 +77,6 @@ export default function Hero() {
         <div className="flex justify-center mb-6">
           <p></p>
         </div>
-        <div className="flex justify-center mb-6">
-          <p></p>
-        </div>
-        <div className="flex justify-center mb-6">
-          <p></p>
-        </div>
       </div>
     </section>
   );

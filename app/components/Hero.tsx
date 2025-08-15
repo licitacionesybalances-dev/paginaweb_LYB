@@ -21,15 +21,7 @@ export default function Hero() {
             alt="Logo de la empresa"
           />
         </div>
-        <div className="flex justify-center mb-6">
-          <p></p>
-        </div>
-        <div className="flex justify-center mb-6">
-          <p></p>
-        </div>
-        <div className="flex justify-center mb-6">
-          <p></p>
-        </div>
+
         <div className="text-center text-white">
           
 
@@ -53,6 +45,24 @@ export default function Hero() {
             </Link>
           </div>
         </div>
+      </div>
+      <div className="flex justify-center mb-6">
+        <p></p>
+      </div>
+      <div className="flex justify-center mb-6">
+        <p></p>
+      </div>
+      <div className="flex justify-center mb-6">
+        <p></p>
+      </div>
+      <div className="flex justify-center mb-6">
+        <p></p>
+      </div>
+      <div className="flex justify-center mb-6">
+        <p></p>
+      </div>
+      <div className="flex justify-center mb-6">
+        <p></p>
       </div>
     </section>
   );

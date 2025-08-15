@@ -33,14 +33,22 @@ export default function CTA() {
               <i className="ri-phone-line text-2xl mr-3"></i>
               <div>
                 <div className="font-semibold">Llama Ahora</div>
-                <div className="text-green-200">+34 628 232 718</div>
+                <div className="text-green-200">
+                  <a href="tel:+34628232718" className="hover:underline text-gray-400">
+                    +34 628 232 718
+                  </a>
+                </div>
               </div>
             </div>
             <div className="flex items-center justify-center">
               <i className="ri-mail-line text-2xl mr-3"></i>
               <div>
                 <div className="font-semibold">Email</div>
-                <div className="text-green-200">licitacionesybalances@gmail.com</div>
+                <div className="text-green-200">
+                  <a href="mailto:licitacionesybalances@gmail.com" className="hover:underline text-gray-400">
+                    licitacionesybalances@gmail.com
+                  </a>
+                </div>
               </div>
             </div>
             <div className="flex items-center justify-center">

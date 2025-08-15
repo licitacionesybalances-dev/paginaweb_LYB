@@ -54,11 +54,15 @@ export default function Footer() {
               </li>
               <li className="flex items-center">
                 <i className="ri-phone-line mr-2"></i>
-                +34 628 232 718
+                <a href="tel:+34628232718" className="hover:underline text-gray-400">
+                  +34 628 232 718
+                </a>
               </li>
               <li className="flex items-center">
                 <i className="ri-mail-line mr-2"></i>
-                licitacionesybalances@gmail.com
+                <a href="mailto:licitacionesybalances@gmail.com" className="hover:underline text-gray-400">
+                  licitacionesybalances@gmail.com
+                </a>
               </li>
               <li className="flex items-center">
                 <i className="ri-time-line mr-2"></i>

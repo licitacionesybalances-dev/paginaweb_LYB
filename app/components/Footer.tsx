@@ -37,11 +37,11 @@ export default function Footer() {
           <div>
             <h4 className="text-lg font-semibold mb-4">Servicios</h4>
             <ul className="space-y-2">
-              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer"><span>Auditorías Energéticas</span></Link></li>
-              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer"><span>Gestión Energética</span></Link></li>
-              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer"><span>Energías Renovables</span></Link></li>
-              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer"><span>Eficiencia Energética</span></Link></li>
-              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer"><span>Certificación</span></Link></li>
+              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Auditorías Energéticas</Link></li>
+              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Gestión Energética</Link></li>
+              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Energías Renovables</Link></li>
+              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Eficiencia Energética</Link></li>
+              <li><Link href="/servicios" className="text-gray-400 hover:text-white transition-colors cursor-pointer">Certificación</Link></li>
             </ul>
           </div>
           
@@ -50,7 +50,7 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li className="flex items-center">
                 <i className="ri-map-pin-line mr-2"></i>
-                Av. San Francisco Javier, nº9, 2º planta, Oficina 4 Sevilla, 41005
+                Av. San Francisco Javier, nº9, 2º planta, Oficina 4 <br /> Sevilla, 41005
               </li>
               <li className="flex items-center">
                 <i className="ri-phone-line mr-2"></i>

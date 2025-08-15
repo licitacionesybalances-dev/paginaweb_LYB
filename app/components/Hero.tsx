@@ -23,7 +23,7 @@ export default function Hero() {
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contacto">
               <button className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors whitespace-nowrap cursor-pointer">
-                Solicitar estudio gratuito <br> (mediante factura)
+                Solicitar estudio gratuito <br /> (mediante factura)
               </button>
             </Link>
             <Link href="/servicios">

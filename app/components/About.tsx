@@ -15,19 +15,36 @@ export default function About() {
         <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
           <div>
             <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
-              Líderes en Eficiencia Energética
+              HISTORIA
             </h2>
             <p className="text-lg text-gray-600 mb-6">
-              Somos una empresa especializada en brindar soluciones integrales de gestión y eficiencia energética. 
-              Nuestro equipo de expertos trabaja con las últimas tecnologías para ayudar a empresas y organizaciones 
-              a optimizar su consumo energético y reducir su huella de carbono.
+              Nuestra historia dentro del Área Energética está marcada por varios hitos que han determinado nuestro crecimiento y enfoque de negocio.
             </p>
             <p className="text-lg text-gray-600 mb-8">
-              Con más de 15 años de experiencia en el sector, hemos desarrollado metodologías propias que nos 
-              permiten identificar oportunidades de ahorro significativas y implementar soluciones sostenibles 
-              que generan valor a largo plazo.
+              La primera etapa, queda marcada por el estudio y análisis del mercada Eléctrico, desde antes de 1997, con el análisis y estudios de todas las tarifas reguladas del sector eléctrico analizando cual era la más adecuada según la tipología de consumo, optimización de Potencia, corrección de E. Reactiva…
             </p>
-            
+            <p className="text-lg text-gray-600 mb-6">
+              En 1.997, se produce un hito relevante: Se aprueba la Ley de Liberalización del Sector Eléctrico, y en el sector entendimos que debíamos adelantarnos a las consecuencias de esta ley, buscando un crecimiento de la estructura, y una mayor presencia en el mercado.
+            </p>
+            <p className="text-lg text-gray-600 mb-6">
+              Desde entonces los estudios quedaron enfocados en ofrecer servicios que respondieran a las futuras y superiores exigencias de los clientes.
+            </p>
+            <p className="text-lg text-gray-600 mb-6">
+              Desde 1997, se han producido varios cambios en el mercado en el que estamos presente, que son necesarios resaltar. El primero es la LIBERALIZACIÓN TOTAL DE LOS MERCADOS ELÉCTRICO Y GASISTA. El segundo cambio, es el desarrollo de las energías renovables en un porcentaje muy elevado, debido al apoyo del Estado con una regulación de primas e incentivos muy adecuada.
+            </p>
+            <p className="text-lg text-gray-600 mb-6">
+              Desde entonces, hemos aprovechado estas dos oportunidades, para conocer y analizar todo tipos de ofertas, para con ello conseguir el modelo que mas se ajuste a nuestros clientes
+            </p>
+            <p className="text-lg text-gray-600 mb-6">
+              Desde entonces nos planteamos nuevos retos, tomando un camino de manera independiente, abordando proyectos que mantengan esta línea de progresión, y el posicionamiento de ser una empresa “cercana al cliente” y especializada en Gestión Energética
+            </p>
+            <h2 className="text-4xl md:text-5xl font-bold text-gray-900 mb-6">
+              Mision
+            </h2>
+            <p className="text-lg text-gray-600 mb-6">
+            Ser una empresa cercana al cliente, en la cual se analiza la eficiencia Energética, desde todos los parámetros desde a las necesidades energéticas de cada cliente para reducir sus costes de operación y contribuir en la mejora de a la imagen como empresa que cuida el medio ambiente.
+            </p>
+
             <div className="grid grid-cols-2 gap-6">
               {stats.map((stat, index) => (
                 <div key={index} className="text-center">

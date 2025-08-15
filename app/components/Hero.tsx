@@ -14,16 +14,16 @@ export default function Hero() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center text-white">
           <h1 className="text-5xl md:text-6xl font-bold mb-6">
-            Soluciones Energéticas
+            Gestiones Energéticas
             <span className="block text-green-400">Inteligentes</span>
           </h1>
           <p className="text-xl md:text-2xl mb-8 max-w-3xl mx-auto">
-            Optimizamos tu consumo energético con tecnología avanzada y estrategias personalizadas para maximizar la eficiencia y reducir costos
+            Optimizamos su facturación energética con tecnología avanzada y estrategias personalizadas para maximizar la eficiencia y reducir costes.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Link href="/contacto">
               <button className="bg-green-500 hover:bg-green-600 text-white px-8 py-4 rounded-lg text-lg font-semibold transition-colors whitespace-nowrap cursor-pointer">
-                Solicitar Consulta
+                Solicitar estudio gratuito <br> (mediante factura)
               </button>
             </Link>
             <Link href="/servicios">

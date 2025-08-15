@@ -11,7 +11,7 @@ export default function Services() {
     },
     {
       title: "Gestión Energética",
-      description: "Implementación de sistemas de monitoreo y control para optimizar el consumo energético en tiempo real.",
+      description: "Monitorizacion del sistema electrico español e implementación de sistemas de control para optimizar su consumo y facturacion energética en tiempo real.",
       icon: "ri-dashboard-line",
       image: "https://readdy.ai/api/search-image?query=Modern%20energy%20management%20control%20room%20with%20multiple%20screens%20showing%20real-time%20energy%20data%2C%20digital%20dashboard%2C%20professional%20monitoring%20equipment%2C%20blue%20and%20green%20interface%20colors%2C%20high-tech%20environment&width=400&height=300&seq=management-service&orientation=landscape"
     },
@@ -49,7 +49,7 @@ export default function Services() {
             Nuestros Servicios
           </h2>
           <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-            Ofrecemos soluciones integrales para optimizar tu consumo energético y reducir costos operativos
+            Ofrecemos soluciones integrales para optimizar tu consumo energético y reducir costes
           </p>
         </div>
         

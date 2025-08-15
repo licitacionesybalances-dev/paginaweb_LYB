@@ -13,7 +13,7 @@ export default function Footer() {
               <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
                 <i className="ri-leaf-line text-xl"></i>
               </div>
-              <h3 className="text-2xl font-bold" style={{fontFamily: 'var(--font-pacifico)'}}>EcoEnergía</h3>
+              <h3 className="text-2xl font-bold" style={{fontFamily: 'var(--font-pacifico)'}}>L&B</h3>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
               Especialistas en gestión y eficiencia energética. Transformamos tu consumo energético con soluciones innovadoras y sostenibles.
@@ -50,15 +50,15 @@ export default function Footer() {
             <ul className="space-y-2 text-gray-400">
               <li className="flex items-center">
                 <i className="ri-map-pin-line mr-2"></i>
-                Calle Principal 123, Madrid
+                Av. San Francisco Javier, nº9, 2º planta, Oficina 4 <br> Sevilla, 41005
               </li>
               <li className="flex items-center">
                 <i className="ri-phone-line mr-2"></i>
-                +34 900 123 456
+                +34 628 232 718
               </li>
               <li className="flex items-center">
                 <i className="ri-mail-line mr-2"></i>
-                info@ecoenergia.com
+                licitacionesybalances@gmail.com
               </li>
               <li className="flex items-center">
                 <i className="ri-time-line mr-2"></i>
@@ -69,7 +69,7 @@ export default function Footer() {
         </div>
         
         <div className="border-t border-gray-800 mt-12 pt-8 text-center text-gray-400">
-          <p>&copy; 2024 EcoEnergía. Todos los derechos reservados.</p>
+          <p>&copy; 2024 L&B. Todos los derechos reservados.</p>
         </div>
       </div>
     </footer>

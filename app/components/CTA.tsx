@@ -33,21 +33,21 @@ export default function CTA() {
               <i className="ri-phone-line text-2xl mr-3"></i>
               <div>
                 <div className="font-semibold">Llama Ahora</div>
-                <div className="text-green-200">+34 900 123 456</div>
+                <div className="text-green-200">+34 628 232 718</div>
               </div>
             </div>
             <div className="flex items-center justify-center">
               <i className="ri-mail-line text-2xl mr-3"></i>
               <div>
                 <div className="font-semibold">Email</div>
-                <div className="text-green-200">info@energiasostenible.com</div>
+                <div className="text-green-200">licitacionesybalances@gmail.com</div>
               </div>
             </div>
             <div className="flex items-center justify-center">
               <i className="ri-time-line text-2xl mr-3"></i>
               <div>
                 <div className="font-semibold">Respuesta en</div>
-                <div className="text-green-200">24 horas</div>
+                <div className="text-green-200">48 horas</div>
               </div>
             </div>
           </div>

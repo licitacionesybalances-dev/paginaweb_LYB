@@ -20,8 +20,8 @@ export default function Hero() {
             <Image
               src="../../assets/logo.png" // Ruta desde la carpeta public
               alt="Logo de la empresa"
-              width={120} // ancho en píxeles
-              height={120} // alto en píxeles
+              width={170} // ancho en píxeles
+              height={142} // alto en píxeles
               priority // carga prioritaria
             />
           </div>

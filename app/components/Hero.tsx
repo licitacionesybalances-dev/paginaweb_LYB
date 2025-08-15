@@ -38,7 +38,7 @@ export default function Hero() {
             </Link>
             <Link href="/servicios">
               <button className="border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-lg text-lg font-semibold transition-colors whitespace-nowrap cursor-pointer">
-                Conocer Servicios
+                Conocer Servicios <br />
               </button>
             </Link>
           </div>

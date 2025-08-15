@@ -13,7 +13,7 @@ export default function Footer() {
               <div className="w-10 h-10 bg-green-500 rounded-lg flex items-center justify-center mr-3">
                 <i className="ri-leaf-line text-xl"></i>
               </div>
-              <h3 className="text-2xl font-bold" style={{fontFamily: 'var(--font-pacifico)'}}>LyB</h3>
+              <h3 className="text-2xl font-bold" style={{fontFamily: 'var(--font-pacifico)'}}>LYB</h3>
             </div>
             <p className="text-gray-400 mb-6 max-w-md">
               Especialistas en gestión y eficiencia energética. Transformamos tu consumo energético con soluciones innovadoras y sostenibles.

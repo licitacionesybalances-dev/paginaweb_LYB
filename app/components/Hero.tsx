@@ -33,7 +33,7 @@ export default function Hero() {
 
         {/* Título */}
         <h1 className="text-4xl sm:text-5xl md:text-6xl font-bold mb-6">
-          Gestiones Energéticas
+          Soluciones Energéticas
           <span className="block text-green-400">Inteligentes</span>
         </h1>
 

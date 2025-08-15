@@ -34,7 +34,7 @@ export default function CTA() {
               <div>
                 <div className="font-semibold">Llama Ahora</div>
                 <div className="text-green-200">
-                  <a href="tel:+34628232718" className="hover:underline text-gray-400">
+                  <a href="tel:+34628232718" className="hover:underline text-white-400">
                     +34 628 232 718
                   </a>
                 </div>
@@ -45,7 +45,7 @@ export default function CTA() {
               <div>
                 <div className="font-semibold">Email</div>
                 <div className="text-green-200">
-                  <a href="mailto:licitacionesybalances@gmail.com" className="hover:underline text-gray-400">
+                  <a href="mailto:licitacionesybalances@gmail.com" className="hover:underline text-white-400">
                     licitacionesybalances@gmail.com
                   </a>
                 </div>

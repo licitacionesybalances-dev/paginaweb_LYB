@@ -16,9 +16,14 @@ export default function Hero() {
       <div className="w-full max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Aquí añades el logo */}
         <div className="flex justify-center mb-6">
-          <img
-            src="/logo.png" // Ruta desde la carpeta public
+          {/* Aquí añades el logo */}
+          <Image
+            src="/logo.png"
             alt="Logo de la empresa"
+            width={170}
+            height={142}
+            priority
+            className="w-32 h-auto sm:w-40 md:w-44" // ajusta según pantallas
           />
         </div>
 

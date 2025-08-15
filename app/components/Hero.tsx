@@ -18,7 +18,7 @@ export default function Hero() {
           {/* Aquí añades el logo */}
           <div className="flex justify-center mb-6">
             <Image
-              src="/logo.png" // Ruta desde la carpeta public
+              src="../public/logo.png" // Ruta desde la carpeta public
               alt="Logo de la empresa"
               width={170} // ancho en píxeles
               height={142} // alto en píxeles

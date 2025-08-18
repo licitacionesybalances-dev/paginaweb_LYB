@@ -15,7 +15,8 @@
     "react-dom": "^18.2.0",
     "recharts": "^2.12.7",
     "autoprefixer": "^10.4.16",
-    "nodemailer": "^6.9.8"
+    "nodemailer": "^6.9.8",
+    "formidable": "^3.7.0"
   },
   "devDependencies": {
     "@types/node": "^20",

@@ -1,4 +1,3 @@
-// app/contacto/page.tsx
 "use client";
 
 import { useState } from "react";
@@ -8,6 +7,20 @@ export default function ContactoPage() {
 
   const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
+    const fileInput = e.currentTarget.querySelector<HTMLInputElement>(
+      'input[name="archivo"]'
+    );
+
+    if (!fileInput?.files?.[0]) {
+      setStatus("❌ Debes adjuntar un archivo PDF.");
+      return;
+    }
+
+    if (fileInput.files[0].type !== "application/pdf") {
+      setStatus("❌ Solo se permiten archivos PDF.");
+      return;
+    }
 
     const formData = new FormData(e.currentTarget);
 

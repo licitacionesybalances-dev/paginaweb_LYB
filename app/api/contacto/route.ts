@@ -4,13 +4,17 @@ import nodemailer from "nodemailer";
 import formidable from "formidable";
 import fs from "fs";
 
+import type { Fields, Files } from "formidable";
+
+
 export const runtime = "nodejs";
 
 export async function POST(req: Request): Promise<Response> {
   const form = formidable({ multiples: false, keepExtensions: true });
 
   return new Promise((resolve) => {
-    form.parse(req as any, async (err, fields, files) => {
+
+    form.parse(req as any, async (err: Error | null, fields: Fields, files: Files) => {
       if (err) {
         console.error("Error parseando form:", err);
         resolve(

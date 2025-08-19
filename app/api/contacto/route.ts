@@ -1,21 +1,61 @@
 // app/api/contacto/route.ts
 import { NextResponse } from "next/server";
+import nodemailer from "nodemailer";
 import formidable from "formidable";
-import { promisify } from "util";
+import fs from "fs";
 
 export const runtime = "nodejs";
 
-export const POST = async (req: Request): Promise<Response> => {
-  const form = formidable({ multiples: false });
-  const parse = promisify(form.parse.bind(form));
+export async function POST(req: Request): Promise<Response> {
+  const form = formidable({ multiples: false, keepExtensions: true });
 
-  try {
-    const { fields, files } = await parse(req as any) as any;
-    console.log("Campos:", fields);
-    console.log("Archivos:", files);
-    return NextResponse.json({ message: "Solicitud recibida correctamente" });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Error al procesar el archivo" }, { status: 500 });
-  }
-};
+  return new Promise((resolve) => {
+    form.parse(req as any, async (err, fields, files) => {
+      if (err) {
+        console.error("Error parseando form:", err);
+        resolve(
+          NextResponse.json({ error: "Error al procesar el archivo" }, { status: 500 })
+        );
+        return;
+      }
+
+      try {
+        const nombre = fields.nombre as string;
+        const email = fields.email as string;
+        const mensaje = fields.mensaje as string;
+        const archivo: any = files.archivo;
+
+        // Configura tu transporte SMTP (ejemplo con Gmail)
+        const transporter = nodemailer.createTransport({
+          service: "gmail",
+          auth: {
+            user: process.env.SMTP_USER, // tu correo
+            pass: process.env.SMTP_PASS, // tu clave o App Password
+          },
+        });
+
+        await transporter.sendMail({
+          from: `"Formulario Web" <${process.env.SMTP_USER}>`,
+          to: "tucorreo@ejemplo.com",
+          subject: "Nueva solicitud de contacto",
+          text: `Nombre: ${nombre}\nCorreo: ${email}\nMensaje:\n${mensaje}`,
+          attachments: archivo
+            ? [
+                {
+                  filename: archivo.originalFilename,
+                  path: archivo.filepath, // formidable guarda en tmp
+                },
+              ]
+            : [],
+        });
+
+        resolve(NextResponse.json({ message: "✅ Correo enviado correctamente" }));
+      } catch (error) {
+        console.error("Error enviando correo:", error);
+        resolve(
+          NextResponse.json({ error: "Error enviando correo" }, { status: 500 })
+        );
+      }
+    });
+  });
+}

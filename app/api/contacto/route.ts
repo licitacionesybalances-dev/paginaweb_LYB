@@ -1,28 +1,36 @@
 // app/api/contacto/route.ts
-import type { NextApiRequest, NextApiResponse } from "next";
-import formidable from "formidable";
-import fs from "fs";
+import { NextResponse } from "next/server";
 
-export const config = {
-  api: {
-    bodyParser: false, // Desactivar bodyParser de Next.js
-  },
-};
+export async function POST(req: Request) {
+  try {
+    const formData = await req.formData();
 
-export default async function handler(req: NextApiRequest, res: NextApiResponse) {
-  if (req.method !== "POST") {
-    return res.status(405).json({ message: "Método no permitido" });
+    const nombre = formData.get("nombre");
+    const email = formData.get("email");
+    const mensaje = formData.get("mensaje");
+    const archivo = formData.get("archivo") as File | null;
+
+    if (!archivo) {
+      return NextResponse.json({ error: "No se envió archivo" }, { status: 400 });
+    }
+
+    if (archivo.type !== "application/pdf") {
+      return NextResponse.json({ error: "Solo se permiten archivos PDF" }, { status: 400 });
+    }
+
+    // ✅ Ejemplo: leer el contenido del archivo (si lo necesitas en memoria)
+    const bytes = await archivo.arrayBuffer();
+    const buffer = Buffer.from(bytes);
+
+    // Aquí podrías guardar en disco, S3, etc.
+    console.log("Nombre:", nombre);
+    console.log("Email:", email);
+    console.log("Mensaje:", mensaje);
+    console.log("Archivo:", archivo.name, "->", buffer.length, "bytes");
+
+    return NextResponse.json({ success: true, message: "Solicitud recibida" });
+  } catch (error) {
+    console.error(error);
+    return NextResponse.json({ error: "Error al procesar la solicitud" }, { status: 500 });
   }
-
-  const form = formidable({ multiples: false });
-
-  form.parse(req, (err, fields, files) => {
-    if (err) return res.status(500).json({ message: "Error al procesar archivo" });
-
-    console.log("Campos:", fields);
-    console.log("Archivos:", files);
-
-    // Aquí puedes guardar el archivo en disco o subirlo a S3, etc.
-    res.status(200).json({ message: "Solicitud recibida" });
-  });
 }

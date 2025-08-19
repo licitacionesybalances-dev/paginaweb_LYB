@@ -27,7 +27,7 @@ export async function POST(req: Request): Promise<Response> {
         const nombre = fields.nombre as string;
         const email = fields.email as string;
         const mensaje = fields.mensaje as string;
-        const archivo: any = files.archivo;
+        const archivo = files.archivo?.[0];
 
         // Configura tu transporte SMTP (ejemplo con Gmail)
         const transporter = nodemailer.createTransport({

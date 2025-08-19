@@ -29,8 +29,15 @@ export async function POST(req: Request) {
     console.log("Archivo:", archivo.name, "->", buffer.length, "bytes");
 
     return NextResponse.json({ success: true, message: "Solicitud recibida" });
-  } catch (error) {
-    console.error(error);
-    return NextResponse.json({ error: "Error al procesar la solicitud" }, { status: 500 });
+  } catch (error: unknown) {
+    // 👇 Aquí logueas el error en consola para ver detalles
+    console.error("❌ Error en /api/contacto:", error);
+
+    // 👇 Si quieres mandar el mensaje al cliente:
+    if (error instanceof Error) {
+      return NextResponse.json({ error: error.message }, { status: 500 });
+    }
+
+    return NextResponse.json({ error: "Error desconocido" }, { status: 500 });
   }
 }

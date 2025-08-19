@@ -1,65 +1,28 @@
 // app/api/contacto/route.ts
-import { NextResponse } from "next/server";
-import nodemailer from "nodemailer";
+import type { NextApiRequest, NextApiResponse } from "next";
 import formidable from "formidable";
 import fs from "fs";
 
-import type { Fields, Files } from "formidable";
+export const config = {
+  api: {
+    bodyParser: false, // Desactivar bodyParser de Next.js
+  },
+};
 
+export default async function handler(req: NextApiRequest, res: NextApiResponse) {
+  if (req.method !== "POST") {
+    return res.status(405).json({ message: "Método no permitido" });
+  }
 
-export const runtime = "nodejs";
+  const form = formidable({ multiples: false });
 
-export async function POST(req: Request): Promise<Response> {
-  const form = formidable({ multiples: false, keepExtensions: true });
+  form.parse(req, (err, fields, files) => {
+    if (err) return res.status(500).json({ message: "Error al procesar archivo" });
 
-  return new Promise((resolve) => {
+    console.log("Campos:", fields);
+    console.log("Archivos:", files);
 
-    form.parse(req as any, async (err: Error | null, fields: Fields, files: Files) => {
-      if (err) {
-        console.error("Error parseando form:", err);
-        resolve(
-          NextResponse.json({ error: "Error al procesar el archivo" }, { status: 500 })
-        );
-        return;
-      }
-
-      try {
-        const nombre = fields.nombre as string;
-        const email = fields.email as string;
-        const mensaje = fields.mensaje as string;
-        const archivo = files.archivo?.[0];
-
-        // Configura tu transporte SMTP (ejemplo con Gmail)
-        const transporter = nodemailer.createTransport({
-          service: "gmail",
-          auth: {
-            user: process.env.SMTP_USER, // tu correo
-            pass: process.env.SMTP_PASS, // tu clave o App Password
-          },
-        });
-
-        await transporter.sendMail({
-          from: `"Formulario Web" <${process.env.SMTP_USER}>`,
-          to: "tucorreo@ejemplo.com",
-          subject: "Nueva solicitud de contacto",
-          text: `Nombre: ${nombre}\nCorreo: ${email}\nMensaje:\n${mensaje}`,
-          attachments: archivo
-            ? [
-                {
-                  filename: archivo.originalFilename,
-                  path: archivo.filepath, // formidable guarda en tmp
-                },
-              ]
-            : [],
-        });
-
-        resolve(NextResponse.json({ message: "✅ Correo enviado correctamente" }));
-      } catch (error) {
-        console.error("Error enviando correo:", error);
-        resolve(
-          NextResponse.json({ error: "Error enviando correo" }, { status: 500 })
-        );
-      }
-    });
+    // Aquí puedes guardar el archivo en disco o subirlo a S3, etc.
+    res.status(200).json({ message: "Solicitud recibida" });
   });
 }

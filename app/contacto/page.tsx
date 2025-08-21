@@ -30,7 +30,7 @@ export default function ContactoPage() {
         body: formData,
       });
 
-      console.log(res);
+      console.log(fileInput.files[0]);
 
       if (res.ok) {
         setStatus("✅ Tu solicitud fue enviada correctamente.");

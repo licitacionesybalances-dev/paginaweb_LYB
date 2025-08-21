@@ -30,6 +30,8 @@ export default function ContactoPage() {
         body: formData,
       });
 
+      console.log(res);
+
       if (res.ok) {
         setStatus("✅ Tu solicitud fue enviada correctamente.");
         //e.currentTarget.reset();

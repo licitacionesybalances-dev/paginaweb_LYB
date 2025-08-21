@@ -59,16 +59,42 @@ export async function POST(req: NextRequest) {
 import { NextRequest, NextResponse } from "next/server";
 import sgMail from "@sendgrid/mail";
 
-//export const runtime = "nodejs"; // Asegura Node.js runtime en producción
-
-console.log("hola");
-
+// Configurar SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
+export async function handler(req: NextRequest) {
+  // Responder a preflight CORS
+  if (req.method === "OPTIONS") {
+    const res = NextResponse.json({}, { status: 200 });
+    res.headers.set("Access-Control-Allow-Origin", "*"); // Cambia por tu dominio si quieres
+    res.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+    res.headers.set(
+      "Access-Control-Allow-Headers",
+      "Content-Type, x-vercel-protection-bypass"
+    );
+    return res;
+  }
 
-export async function POST(req: NextRequest) {
+  // Solo aceptar POST
+  if (req.method !== "POST") {
+    const res = NextResponse.json(
+      { error: `Method ${req.method} Not Allowed` },
+      { status: 405 }
+    );
+    res.headers.set("Allow", "POST, OPTIONS");
+    return res;
+  }
+
+  // Validar header de bypass de Vercel
+  const bypassHeader = req.headers.get("x-vercel-protection-bypass");
+  if (bypassHeader !== process.env.VERCEL_AUTOMATION_BYPASS_SECRET) {
+    return NextResponse.json(
+      { ok: false, error: "No autorizado (bypass inválido)" },
+      { status: 401 }
+    );
+  }
+
   try {
-    // Asegúrate de que el request sea multipart/form-data
     const formData = await req.formData();
 
     const nombre = formData.get("nombre") as string;
@@ -76,7 +102,6 @@ export async function POST(req: NextRequest) {
     const mensaje = formData.get("mensaje") as string;
     const archivo = formData.get("archivo") as File | null;
 
-    // Construir mensaje base
     const msg: any = {
       to: process.env.SMTP_TO,
       from: process.env.SMTP_FROM as string,
@@ -90,13 +115,9 @@ export async function POST(req: NextRequest) {
       attachments: [],
     };
 
-    console.log(email);
-
-    // Manejar archivo adjunto
     if (archivo) {
       const arrayBuffer = await archivo.arrayBuffer();
       const uint8Array = new Uint8Array(arrayBuffer);
-      // Convertir a Base64 sin usar Buffer
       const base64 = Buffer.from(uint8Array).toString("base64");
 
       msg.attachments.push({
@@ -107,7 +128,6 @@ export async function POST(req: NextRequest) {
       });
     }
 
-    // Enviar correo
     await sgMail.send(msg);
 
     return NextResponse.json({
@@ -116,9 +136,13 @@ export async function POST(req: NextRequest) {
     });
   } catch (error: any) {
     console.error("Error al procesar formulario:", error);
-    return NextResponse.json({
-      ok: false,
-      error: error.message || "Error desconocido",
-    });
+    return NextResponse.json(
+      { ok: false, error: error.message || "Error desconocido" },
+      { status: 500 }
+    );
   }
 }
+
+// Exportar handlers de Next.js
+export const POST = handler;
+export const OPTIONS = handler;

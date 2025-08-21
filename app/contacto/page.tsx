@@ -28,7 +28,7 @@ export default function ContactoPage() {
       const res = await fetch("/api/contacto", {
         method: "POST",
         headers: {
-        "Authorization": `Bearer ${process.env.VERCEL_BYPASS_TOKEN}`
+        "x-vercel-protection-bypass": process.env.NEXT_PUBLIC_VERCEL_AUTOMATION_BYPASS_SECRET!,
         },
         body: formData,
       });

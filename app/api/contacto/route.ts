@@ -87,6 +87,8 @@ Mensaje: ${mensaje}
       attachments: [],
     };
 
+    console.log(email);
+
     // Manejar archivo adjunto
     if (archivo) {
       const arrayBuffer = await archivo.arrayBuffer();

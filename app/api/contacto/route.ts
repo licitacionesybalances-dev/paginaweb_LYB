@@ -63,6 +63,8 @@ export const runtime = "nodejs"; // Asegura Node.js runtime en producción
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
+console.log("hola");
+
 export async function POST(req: NextRequest) {
   try {
     // Asegúrate de que el request sea multipart/form-data
@@ -79,9 +81,9 @@ export async function POST(req: NextRequest) {
       from: process.env.SMTP_FROM as string,
       subject: "Nueva solicitud de contacto",
       text: `
-Nombre: ${nombre}
-Email: ${email}
-Mensaje: ${mensaje}
+        Nombre: ${nombre}
+        Email: ${email}
+        Mensaje: ${mensaje}
       `,
       replyTo: email,
       attachments: [],

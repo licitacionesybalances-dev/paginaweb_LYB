@@ -32,13 +32,11 @@ export default function ContactoPage() {
 
       if (res.ok) {
         setStatus("✅ Tu solicitud fue enviada correctamente.");
-        //e.currentTarget.reset();
+        e.currentTarget.reset();
       } else {
-        console.log(error);
         setStatus("❌ Hubo un error al enviar la solicitud.");
       }
     } catch (error) {
-      
       setStatus("❌ Error de conexión.");
     }
   };

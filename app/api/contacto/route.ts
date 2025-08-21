@@ -1,5 +1,7 @@
+/*
 import { NextRequest, NextResponse } from "next/server";
 import sgMail from "@sendgrid/mail";
+
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
@@ -52,4 +54,64 @@ export async function POST(req: NextRequest) {
       error: error.message || "Error desconocido",
     });
   }
+}*/
+
+import { NextRequest, NextResponse } from "next/server";
+import sgMail from "@sendgrid/mail";
+
+sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
+
+// Handler para POST → enviar formulario
+export async function POST(req: NextRequest) {
+  try {
+    const formData = await req.formData();
+
+    const nombre = formData.get("nombre") as string;
+    const email = formData.get("email") as string;
+    const mensaje = formData.get("mensaje") as string;
+    const archivo = formData.get("archivo") as File | null;
+
+    const msg: any = {
+      to: process.env.SMTP_TO,
+      from: process.env.SMTP_FROM, // remitente verificado en SendGrid
+      subject: "Nueva solicitud de contacto",
+      text: `
+        Nombre: ${nombre}
+        Email: ${email}
+        Mensaje: ${mensaje}
+      `,
+      replyTo: email,
+      attachments: [],
+    };
+
+    if (archivo) {
+      const buffer = Buffer.from(await archivo.arrayBuffer());
+      msg.attachments.push({
+        content: buffer.toString("base64"),
+        filename: archivo.name,
+        type: archivo.type,
+        disposition: "attachment",
+      });
+    }
+
+    await sgMail.send(msg);
+
+    return NextResponse.json({
+      ok: true,
+      message: "Formulario recibido y correo enviado con SendGrid.",
+    });
+  } catch (error: any) {
+    console.error("Error al procesar formulario:", error);
+    return NextResponse.json({
+      ok: false,
+      error: error.message || "Error desconocido",
+    });
+  }
+}
+
+// Handler opcional para GET → pruebas / test del endpoint
+export async function GET(req: NextRequest) {
+  return NextResponse.json({
+    message: "API funcionando, usa POST para enviar formulario",
+  });
 }

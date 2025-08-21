@@ -62,29 +62,20 @@ import sgMail from "@sendgrid/mail";
 // Configurar SendGrid
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
-export async function handler(req: NextRequest) {
-  // Responder a preflight CORS
-  if (req.method === "OPTIONS") {
-    const res = NextResponse.json({}, { status: 200 });
-    res.headers.set("Access-Control-Allow-Origin", "*"); // Cambia por tu dominio si quieres
-    res.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
-    res.headers.set(
-      "Access-Control-Allow-Headers",
-      "Content-Type, x-vercel-protection-bypass"
-    );
-    return res;
-  }
+// Preflight y CORS
+export async function OPTIONS() {
+  const res = NextResponse.json({}, { status: 200 });
+  res.headers.set("Access-Control-Allow-Origin", "*"); // cámbialo por tu dominio en producción
+  res.headers.set("Access-Control-Allow-Methods", "POST, OPTIONS");
+  res.headers.set(
+    "Access-Control-Allow-Headers",
+    "Content-Type, x-vercel-protection-bypass"
+  );
+  return res;
+}
 
-  // Solo aceptar POST
-  if (req.method !== "POST") {
-    const res = NextResponse.json(
-      { error: `Method ${req.method} Not Allowed` },
-      { status: 405 }
-    );
-    res.headers.set("Allow", "POST, OPTIONS");
-    return res;
-  }
-
+// Manejar POST
+export async function POST(req: NextRequest) {
   // Validar header de bypass de Vercel
   const bypassHeader = req.headers.get("x-vercel-protection-bypass");
   if (bypassHeader !== process.env.VERCEL_AUTOMATION_BYPASS_SECRET) {
@@ -142,7 +133,3 @@ export async function handler(req: NextRequest) {
     );
   }
 }
-
-// Exportar handlers de Next.js
-export const POST = handler;
-export const OPTIONS = handler;

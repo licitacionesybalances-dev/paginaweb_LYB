@@ -31,7 +31,7 @@ export default function ContactoPage() {
       });
 
       console.log(fileInput.files[0]);
-      console.log(res.headers);
+      console.log(res.ok);
 
       if (res.ok) {
         setStatus("✅ Tu solicitud fue enviada correctamente.");

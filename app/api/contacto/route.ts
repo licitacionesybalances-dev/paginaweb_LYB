@@ -25,7 +25,7 @@ export async function POST(req: NextRequest) {
 
     // Preparar el correo
     const mailOptions: any = {
-      from: `"${nombre}" <${email}>`,
+      from: `"${nombre}" <${process.env.SMTP_USER}>`,
       to: process.env.SMTP_TO, // correo receptor
       subject: "Nueva solicitud de contacto",
       text: `

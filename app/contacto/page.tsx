@@ -31,11 +31,13 @@ export default function ContactoPage() {
       });
 
       console.log(fileInput.files[0]);
+      console.log(res.headers);
 
       if (res.ok) {
         setStatus("✅ Tu solicitud fue enviada correctamente.");
         //e.currentTarget.reset();
       } else {
+
         setStatus("❌ Hubo un error al enviar la solicitud.");
       }
     } catch (error) {

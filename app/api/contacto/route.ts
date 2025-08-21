@@ -59,11 +59,12 @@ export async function POST(req: NextRequest) {
 import { NextRequest, NextResponse } from "next/server";
 import sgMail from "@sendgrid/mail";
 
-export const runtime = "nodejs"; // Asegura Node.js runtime en producción
+//export const runtime = "nodejs"; // Asegura Node.js runtime en producción
+
+console.log("hola");
 
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
-console.log("hola");
 
 export async function POST(req: NextRequest) {
   try {

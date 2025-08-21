@@ -59,11 +59,13 @@ export async function POST(req: NextRequest) {
 import { NextRequest, NextResponse } from "next/server";
 import sgMail from "@sendgrid/mail";
 
+export const runtime = "nodejs"; // Asegura Node.js runtime en producción
+
 sgMail.setApiKey(process.env.SENDGRID_API_KEY as string);
 
-// Handler para POST → enviar formulario
 export async function POST(req: NextRequest) {
   try {
+    // Asegúrate de que el request sea multipart/form-data
     const formData = await req.formData();
 
     const nombre = formData.get("nombre") as string;
@@ -71,29 +73,36 @@ export async function POST(req: NextRequest) {
     const mensaje = formData.get("mensaje") as string;
     const archivo = formData.get("archivo") as File | null;
 
+    // Construir mensaje base
     const msg: any = {
       to: process.env.SMTP_TO,
-      from: process.env.SMTP_FROM, // remitente verificado en SendGrid
+      from: process.env.SMTP_FROM as string,
       subject: "Nueva solicitud de contacto",
       text: `
-        Nombre: ${nombre}
-        Email: ${email}
-        Mensaje: ${mensaje}
+Nombre: ${nombre}
+Email: ${email}
+Mensaje: ${mensaje}
       `,
       replyTo: email,
       attachments: [],
     };
 
+    // Manejar archivo adjunto
     if (archivo) {
-      const buffer = Buffer.from(await archivo.arrayBuffer());
+      const arrayBuffer = await archivo.arrayBuffer();
+      const uint8Array = new Uint8Array(arrayBuffer);
+      // Convertir a Base64 sin usar Buffer
+      const base64 = Buffer.from(uint8Array).toString("base64");
+
       msg.attachments.push({
-        content: buffer.toString("base64"),
+        content: base64,
         filename: archivo.name,
         type: archivo.type,
         disposition: "attachment",
       });
     }
 
+    // Enviar correo
     await sgMail.send(msg);
 
     return NextResponse.json({
@@ -107,11 +116,4 @@ export async function POST(req: NextRequest) {
       error: error.message || "Error desconocido",
     });
   }
-}
-
-// Handler opcional para GET → pruebas / test del endpoint
-export async function GET(req: NextRequest) {
-  return NextResponse.json({
-    message: "API funcionando, usa POST para enviar formulario",
-  });
 }
